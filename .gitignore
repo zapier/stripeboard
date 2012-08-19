@@ -15,4 +15,5 @@ MANIFEST
 *.sqlite
 *.db
 
-*/settings_local.py
+stripeboard/static
+stripeboard/settings_local.py

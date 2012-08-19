@@ -29,7 +29,7 @@
             <ul class="nav pull-right">
               {% if request.user.is_authenticated %}
                 <li class="pull-right"><a href="{% url dashboard %}">Dashboard</a></li>
-                <li class="pull-right"><a href="{% url rebuild %}">Refresh Data</a></li>
+                <li class="pull-right"><a href="{% url rebuild %}"><i class="icon-refresh icon-white" style="opacity:0.4"></i> Refresh Data</a></li>
                 <li class="pull-right"><a href="{% url logout %}">Logout</a></li>
               {% else %}
                 <form action="{% url login %}" method="post" class="navbar-search form-inline" style="margin:0">{% csrf_token %}
