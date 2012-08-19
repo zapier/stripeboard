@@ -41,7 +41,7 @@ if os.environ.get('REDISTOGO_URL', None):
         host=redis_url.hostname,
         port=redis_url.port,
         password=redis_url.password,
-        db=1
+        db=0
     )
 
 
