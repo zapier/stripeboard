@@ -24,8 +24,8 @@ $(document).ready(function (){
     };
 
     // build graph
-    var graph = new Rickshaw.Graph( {
-      element: document.querySelector("#chart"), 
+    var graph = new Rickshaw.Graph({
+      element: document.querySelector('#chart'),
       width: 600,
       height: 575,
       renderer: 'line',
@@ -41,7 +41,7 @@ $(document).ready(function (){
     });
 
     graph.render();
-    var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+    var hoverDetail = new Rickshaw.Graph.HoverDetail({
       graph: graph,
     });
   };
