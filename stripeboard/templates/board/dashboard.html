@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block container %}
+  {% if not request.user.get_profile.access_token %}
+    <div class="row">
+      <div class="span12">
+        <p><a class="btn btn-primary" href="{% url oauth_start %}">Connect to your Stripe account.</a></p>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="span8">
+      <div id="chart"></div>
+      &nbsp;
+    </div>
+
+    <div class="span4">
+      <div class="well">
+        <h4>Customers <small>(total paying)</small></h4>
+        <h2><span data-value-key="paying_customers"><small>loading...</small></span></h2>
+      </div>
+      <div class="well">
+        <h4>Monthly Revenue <small>(projected)</small></h4>
+        <h2>$<span data-value-key="monthly_revenue"> <small>loading...</small></span></h2>
+      </div>
+      <div class="well">
+        <h4>Churns <small>(last 31 days)</small></h4>
+        <h2><span data-value-key="churn_count"><small>loading...</small></span></h2>
+      </div>
+      <div class="well">
+        <h4>Churn Rate <small>(last 31 days)</small></h4>
+        <h2><span data-value-key="churn"><small>loading...</small> </span>%</h2>
+      </div>
+      <div class="well">
+        <h4>CLV <small>(last 31 days)</small></h4>
+        <h2>$<span data-value-key="customer_lifetime_value"> <small>loading...</small></span></h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <br />
+      <br />
+      <br />
+      <small><em>It isn't very likely that these values are perfect, and we already load a lot of data from the Stripe API (sorry guys) to get it somewhat close. But it should be within the ballpark, and you should want to make them go up all them same. <a href="#">Want to help fix it or run it locally?</a></em></small>
+    </div>
+  </div>
+{% endblock container %}
+
+{% block footer %}
+<script type="text/javascript">
+  var jsonUrl = '{% url json_data %}';
+</script>
+{% endblock footer %}
