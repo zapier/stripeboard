@@ -37,9 +37,10 @@ if os.environ.get('REDISTOGO_URL', None):
         }
     }
 
-    BROKER_URL = 'redis://{password}@{host}:{port}/{db}'.format(
+    BROKER_URL = 'redis://{username}:{password}@{host}:{port}/{db}'.format(
         host=redis_url.hostname,
         port=redis_url.port,
+        username=redis_url.username,
         password=redis_url.password,
         db=0
     )
@@ -53,6 +54,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
 
 ### STATIC FILES ###
 
