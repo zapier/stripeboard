@@ -54,10 +54,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = ''
-MEDIA_URL = ''
+MEDIA_ROOT = os.path.join(PATH, 'media')
+MEDIA_URL = '/media/'
 
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(PATH, 'static')
 STATIC_URL = '/static/'
 
 
