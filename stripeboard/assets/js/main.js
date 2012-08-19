@@ -2,7 +2,7 @@ $(document).ready(function (){
   var render, key, value;
   render = function (json) {
     // no data, try again in 5 seconds...
-    if (typeof json == undefined) {
+    if (json.paying_customers == 0) {
       return setTimeout(function() {
         $.getJSON(jsonUrl, render);
       }, 5000);

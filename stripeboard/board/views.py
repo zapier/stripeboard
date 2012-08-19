@@ -41,7 +41,7 @@ def rebuild(request):
     if not rebuilt:
         messages.error(request, 'Only refreshes once an hour.')
     else:
-        messages.success(request, 'Data refreshing... reload in about a minute.')
+        messages.success(request, 'Data refreshing... refresh in about a minute.')
     return redirect('dashboard')
 
 @login_required
@@ -121,5 +121,6 @@ def retrieve_oauth(request):
 
     # build the cache in the background...
     profile.rebuild()
+    messages.success(request, 'Data refreshing... refresh in about a minute.')
 
     return redirect('dashboard')
