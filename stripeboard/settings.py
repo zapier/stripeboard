@@ -54,12 +54,24 @@ USE_L10N = True
 
 USE_TZ = True
 
+### STATIC FILES ###
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_HEADERS = {
+    'Cache-Control': 'max-age=86400',
+}
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', None)
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', None)
+
 MEDIA_ROOT = os.path.join(PATH, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://s3.amazonaws.com/{0}/'.format(AWS_STORAGE_BUCKET_NAME)
 
 STATIC_ROOT = os.path.join(PATH, 'static')
-STATIC_URL = '/static/'
-
+STATIC_URL = 'https://s3.amazonaws.com/{0}/'.format(AWS_STORAGE_BUCKET_NAME)
 
 STATICFILES_DIRS = (
     os.path.join(PATH, 'assets'),
@@ -70,7 +82,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-SECRET_KEY = None
+
+SECRET_KEY = os.environ.get('SECRET_KEY', None)
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
