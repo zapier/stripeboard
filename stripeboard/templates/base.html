@@ -29,6 +29,7 @@
             <ul class="nav pull-right">
               {% if request.user.is_authenticated %}
                 <li class="pull-right"><a href="{% url dashboard %}">Dashboard</a></li>
+                <li class="pull-right"><a href="{% url rebuild %}">Refresh Data</a></li>
                 <li class="pull-right"><a href="{% url logout %}">Logout</a></li>
               {% else %}
                 <form action="{% url login %}" method="post" class="navbar-search form-inline" style="margin:0">{% csrf_token %}
@@ -43,8 +44,15 @@
       </div>
     </div>
 
-    <div class="container">{% block container %}
-    {% endblock container %}</div>
+    <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+          <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {% block container %}{% endblock container %}
+    </div>
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>

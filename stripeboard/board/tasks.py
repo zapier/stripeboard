@@ -5,11 +5,10 @@ from stripeboard.board.models import Profile
 
 @task(serializer='json')
 def rebuild_caches():
-    user_ids = Profile.objects.exclude(access_token=None)\
-                              .values_list('user_id', flat=True)
+    profiles = Profile.objects.exclude(access_token=None).all()
 
-    for user_id in user_ids:
-        rebuild_cache.apply_async((user_id,))
+    for profile in profiles:
+        profile.rebuild()
 
 
 @task(serializer='json')

@@ -69,6 +69,20 @@ class Profile(models.Model):
                 events = self.refresh(next=self.rebuild_customers)
             cache.set(self.CHURNS_KEY, events, TIMEOUT)
 
+    REBUILD_LOCK = property(lambda self: 'rebuild-lock-{0}'.format(self.id))
+
+    def rebuild(self):
+        from stripeboard.board.tasks import rebuild_cache
+
+        # only one rebuild per hour
+        lock = cache.get(self.REBUILD_LOCK, False)
+        if lock:
+            return False
+
+        rebuild_cache.delay(self.user.id)
+        cache.set(self.REBUILD_LOCK, True, 60*60)
+        return True
+
 
     def refresh(self, next=None):
         '''

@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', views.do_logout, name='logout'),
 
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
+    url(r'^rebuild/$', views.rebuild, name='rebuild'),
     url(r'^dashboard/data\.json$', views.json_data, name='json_data'),
 
     url(r'^dashboard/oauth/start/$', views.oauth_start, name='oauth_start'),

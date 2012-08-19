@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.http import Http404, HttpResponse, QueryDict
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 
 from stripeboard.board.forms import UserCreateForm
@@ -33,6 +34,17 @@ def do_logout(request):
 def dashboard(request):
     return render(request, 'board/dashboard.html', locals())
 
+@login_required
+def rebuild(request):
+    profile = request.user.get_profile()
+    rebuilt = profile.rebuild()
+    if not rebuilt:
+        messages.error(request, 'Only refreshes once an hour.')
+    else:
+        messages.success(request, 'Data refreshing... reload in about a minute.')
+    return redirect('dashboard')
+
+@login_required
 def json_data(request):
     profile = request.user.get_profile()
     return HttpResponse(json.dumps(profile.data), content_type='application/json')
@@ -108,6 +120,6 @@ def retrieve_oauth(request):
     profile.save()
 
     # build the cache in the background...
-    rebuild_cache.apply_async((request.user.id,))
+    profile.rebuild()
 
     return redirect('dashboard')
