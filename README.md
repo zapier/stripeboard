@@ -8,7 +8,7 @@ Go check out a live, working version with OAuth at [http://board.zapier.com/](ht
 
 *A sample dashboard for illustration.*
 
-![some made up numbers for example!](http://i.imgur.com/5CEvK.png)
+![some made up numbers for example!](https://s3.amazonaws.com/zapierboard/img/stripeboard.png)
 
 ### Heads up!
 

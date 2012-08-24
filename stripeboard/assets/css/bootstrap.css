@@ -4895,3 +4895,10 @@ a.badge:hover {
 .invisible {
   visibility: hidden;
 }
+
+img.polaroid {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  max-width: 888px;
+}
