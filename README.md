@@ -6,6 +6,8 @@ Stripe is awesome. Metrics are awesome. So let's do this!
 
 Go check out a live, working version with OAuth at [http://board.zapier.com/](http://board.zapier.com/). Your data is in cache and sticks around for 24 hours, then you'll need to refresh it (we do not refresh it for you automatically).
 
+*A sample dashboard for illustration.*
+
 ![some made up numbers for example!](http://i.imgur.com/5CEvK.png)
 
 ### Heads up!
@@ -55,7 +57,7 @@ heroku ps:scale celeryd=1
 
 Be sure to `pip install requirements.txt` and have Redis running locally.
 
-Create a `local_settings.py` file like so:
+Create a `settings_local.py` file like so:
 
 ```python
 DEBUG = True
