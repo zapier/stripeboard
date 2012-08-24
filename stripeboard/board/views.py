@@ -22,11 +22,14 @@ def do_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                messages.success(request, 'Logged in.')
                 return redirect('dashboard')
+    messages.error(request, 'Could not log you in (check email or password).')
     return redirect('home')
 
 def do_logout(request):
     logout(request)
+    messages.success(request, 'Logged out.')
     return redirect('home')
 
 
