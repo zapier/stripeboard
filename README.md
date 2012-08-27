@@ -55,7 +55,7 @@ heroku ps:scale celeryd=1
 
 ### Local
 
-Be sure to `pip install requirements.txt` and have Redis running locally.
+Be sure to `pip install -r requirements.txt` and have Redis running locally.
 
 Create a `settings_local.py` file like so:
 
