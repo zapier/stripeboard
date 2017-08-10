@@ -1,3 +1,5 @@
+*This project is no longer maintained. If you are interested in taking over the project, email [contact@zapier.com](mailto:contact@zapier.com).*
+
 # A simple Stripe Dashboard
 
 Stripe is awesome. Metrics are awesome. So let's do this!
